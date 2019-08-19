@@ -54,18 +54,70 @@ function checkRows() {
     }
 }
 
+function checkDiagonal() {
+    let player1 = 0;
+    let player2 = 0;
+
+    let leftDiagonal = 0;
+    let rightDiagonal = 0;
+    for (let r = 0; r < game_board.rows.length; r++) {
+        if (game_board.rows[r].cells[leftDiagonal].innerHTML === 'X') {
+            player1 += 1;
+        }
+        if (game_board.rows[r].cells[leftDiagonal].innerHTML === 'O') {
+            player2 += 1;
+        }
+        leftDiagonal += 1;
+    }
+
+    if (player1 === 3) {
+        return 1;
+    }
+    if (player2 === 3) {
+        return 2;
+    }
+
+    player1 = 0;
+    player2 = 0;
+
+    for (let r = (game_board.rows.length - 1); r >= 0; r--) {
+        if (game_board.rows[r].cells[rightDiagonal].innerHTML === 'X') {
+            player1 += 1;
+        }
+        if (game_board.rows[r].cells[rightDiagonal].innerHTML === 'O') {
+            player2 += 1;
+        }
+        rightDiagonal += 1;
+
+    }
+
+    if (player1 === 3) {
+        return 1;
+    }
+    if (player2 === 3) {
+        return 2;
+    }
+}
+
 function checkWinConditions() {
     console.log('test');
     if (checkRows() === 1) {
         console.log('PLAYER 1 win')
+    } else if (checkRows() === 2) {
+        console.log('PLAYER 2 win')
     }
-    else if(checkRows() === 2) {
+
+    if (checkDiagonal() === 1) {
+        console.log('PLAYER 1 win')
+    } else if (checkDiagonal() === 2) {
         console.log('PLAYER 2 win')
     }
 }
 
 // let variables;
 handleCellOnClick();
+checkDiagonal();
+
 // console.log(variables);
 
 // getTableRowAndColumnFromClick();
