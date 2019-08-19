@@ -25,7 +25,7 @@ function markCell(r_index, c_index) {
 
 function checkCell(r_index, c_index) {
     console.log(game_board.rows[r_index].cells[c_index].innerHTML);
-    if (game_board.rows[r_index].cells[c_index].innerHTML === "a") {
+    if (game_board.rows[r_index].cells[c_index].innerHTML === "") {
         markCell(r_index, c_index);
         checkWinConditions();
     }
