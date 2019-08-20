@@ -129,25 +129,31 @@ function checkWinConditions() {
     console.log('test');
     if (checkRows() === 1) {
         removeAL();
+        alert('Player 1 win');
         console.log('PLAYER 1 win')
     } else if (checkRows() === 2) {
         removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
     if (checkDiagonal() === 1) {
         removeAL();
+        alert('Player 1 win');
         console.log('PLAYER 1 win')
     } else if (checkDiagonal() === 2) {
         removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
     if (checkColumns() === 1) {
         removeAL();
+        alert('Player 1 win');
         console.log('PLAYER 1 win');
     } else if (checkColumns() === 2) {
         removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
