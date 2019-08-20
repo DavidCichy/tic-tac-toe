@@ -1,5 +1,18 @@
+const game = document.getElementsByClassName("game");
 const game_board = document.getElementById("game_board");
 let use_x = true;
+
+function create_grid(){
+    for (let row=0;row<3;row++){
+        let tr = document.createElement("tr");
+        game_board.appendChild(tr);
+        for (let col=0;col<3;col++) {
+            let td = document.createElement("td");
+            tr.appendChild(td);
+        }
+        game_board.appendChild(tr);
+    }
+}
 
 function handleCellOnClick() {
     let r_index, c_index;
@@ -114,10 +127,14 @@ function checkWinConditions() {
     }
 }
 
-// let variables;
-handleCellOnClick();
-checkDiagonal();
+function main(){
+    game.innerHTML = " sasa ";
+    game_board.setAttribute("id", "game_board");
 
-// console.log(variables);
+    create_grid();
+    handleCellOnClick();
+    checkDiagonal();
 
-// getTableRowAndColumnFromClick();
+}
+
+main();
