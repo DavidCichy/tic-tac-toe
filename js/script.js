@@ -3,14 +3,12 @@ let use_x = true;
 
 function handleCellOnClick() {
     let r_index, c_index;
-    //GET CLICKED ROW/COLUMN PARAMETERS
     for (let r = 0; r < game_board.rows.length; r++) {
         for (let c = 0; c < game_board.rows[r].cells.length; c++) {
             // return
             game_board.rows[r].cells[c].onclick = function () {
                 r_index = this.parentElement.rowIndex;
                 c_index = this.cellIndex;
-                //console.log("R/C", [r_index, c_index]);
                 checkCell(r_index, c_index);
             }
         }
@@ -128,25 +126,45 @@ function checkColumns() {
 function checkWinConditions() {
     console.log('test');
     if (checkRows() === 1) {
+        removeAL();
+        alert('Player 1 win');
         console.log('PLAYER 1 win')
     } else if (checkRows() === 2) {
+        removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
     if (checkDiagonal() === 1) {
+        removeAL();
+        alert('Player 1 win');
         console.log('PLAYER 1 win')
     } else if (checkDiagonal() === 2) {
+        removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
     if (checkColumns() === 1) {
-        console.log('PLAYER 1 win')
+        removeAL();
+        alert('Player 1 win');
+        console.log('PLAYER 1 win');
     } else if (checkColumns() === 2) {
+        removeAL();
+        alert('Player 2 win');
         console.log('PLAYER 2 win')
     }
 
-
 }
 
+function removeAL() {
+    console.log('test break');
+    for (let r = 0; r < game_board.rows.length; r++) {
+        for (let c = 0; c < game_board.rows[r].cells.length; c++) {
+            // return
+            game_board.rows[r].cells[c].onclick = null;
+        }
+    }
+}
 handleCellOnClick();
 
