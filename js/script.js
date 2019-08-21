@@ -1,9 +1,19 @@
 const body = document.getElementsByTagName("body")[0];
-console.log(body);
 const game = document.getElementsByClassName("game")[0];
+const player_header = document.getElementsByClassName("player")[0];
 const game_board = document.getElementById("game_board");
-
+let game_finished = false;
 let use_x = true;
+
+function active_player_x(){
+    player_header.innerHTML = "Active Player 1: X";
+    use_x = true;
+}
+
+function active_player_o(){
+    player_header.innerHTML = "Active Player 2: O";
+    use_x = false;
+}
 
 function create_grid(){
     for (let row=0;row<3;row++){
@@ -23,13 +33,14 @@ function create_grid(){
     reset_button.setAttribute("onclick", "reset_board()");
     body.appendChild(reset_button);
     handleCellOnClick();
+    active_player_x();
 }
 
 function reset_board() {
     game_board.innerHTML="";
     document.getElementById("reset_button").parentNode.removeChild(document.getElementById("reset_button"));
     create_grid();
-
+    game_finished = false;
 }
 
 function handleCellOnClick() {
@@ -53,8 +64,7 @@ function clear_table(){
 
 function markCell(r_index, c_index) {
     game_board.rows[r_index].cells[c_index].innerHTML = use_x ? "X" : "O";
-    use_x = !use_x;
-
+    use_x ? active_player_o() : active_player_x();
 }
 
 function checkCell(r_index, c_index) {
@@ -159,36 +169,24 @@ function checkColumns() {
     }
 }
 
+function game_ends(){
+    removeAL();
+    game_finished = true;
+    // active_player_x();
+}
+
 function checkWinConditions() {
     console.log('test');
-    if (checkRows() === 1) {
-        removeAL();
-        alert('Player 1 win');
-        console.log('PLAYER 1 win')
-    } else if (checkRows() === 2) {
-        removeAL();
-        alert('Player 2 win');
-        console.log('PLAYER 2 win')
-    }
-
-    if (checkDiagonal() === 1) {
-        removeAL();
-        alert('Player 1 win');
-        console.log('PLAYER 1 win')
-    } else if (checkDiagonal() === 2) {
-        removeAL();
-        alert('Player 2 win');
-        console.log('PLAYER 2 win')
-    }
-
-    if (checkColumns() === 1) {
-        removeAL();
+    if (checkRows() === 1 || checkDiagonal() === 1 || checkColumns() === 1) {
+        active_player_x();
+        game_ends();
         alert('Player 1 win');
         console.log('PLAYER 1 win');
-    } else if (checkColumns() === 2) {
-        removeAL();
+    } else if (checkRows() === 2 || checkDiagonal() === 2 || checkColumns() === 2) {
+        active_player_o();
+        game_ends();
         alert('Player 2 win');
-        console.log('PLAYER 2 win')
+        console.log('PLAYER 2 win');
     }
 
 }

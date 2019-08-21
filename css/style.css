@@ -11,6 +11,10 @@ header{
     font-variant: small-caps;
 }
 
+div.player{
+    margin: 15px;
+}
+
 div.game{
     width:100%;
     border-top: 1px solid black;
