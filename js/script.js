@@ -1,5 +1,36 @@
+const body = document.getElementsByTagName("body")[0];
+console.log(body);
+const game = document.getElementsByClassName("game")[0];
 const game_board = document.getElementById("game_board");
+
 let use_x = true;
+
+function create_grid(){
+    for (let row=0;row<3;row++){
+        let tr = document.createElement("tr");
+        game_board.appendChild(tr);
+        for (let col=0;col<3;col++) {
+            let td = document.createElement("td");
+            tr.appendChild(td);
+        }
+        game_board.appendChild(tr);
+    }
+
+    let reset_button = document.createElement("button");
+    reset_button.innerHTML = "RESTART";
+    reset_button.setAttribute("class", "reset_button");
+    reset_button.setAttribute("id", "reset_button");
+    reset_button.setAttribute("onclick", "reset_board()");
+    body.appendChild(reset_button);
+    handleCellOnClick();
+}
+
+function reset_board() {
+    game_board.innerHTML="";
+    document.getElementById("reset_button").parentNode.removeChild(document.getElementById("reset_button"));
+    create_grid();
+
+}
 
 function handleCellOnClick() {
     let r_index, c_index;
@@ -13,6 +44,11 @@ function handleCellOnClick() {
             }
         }
     }
+}
+
+function clear_table(){
+    game_board.innerHTML = "";
+    create_grid();
 }
 
 function markCell(r_index, c_index) {
@@ -157,6 +193,14 @@ function checkWinConditions() {
 
 }
 
+
+function main(){
+
+    create_grid();
+    checkDiagonal();
+
+}
+
 function removeAL() {
     console.log('test break');
     for (let r = 0; r < game_board.rows.length; r++) {
@@ -166,5 +210,6 @@ function removeAL() {
         }
     }
 }
-handleCellOnClick();
+
+main();
 
