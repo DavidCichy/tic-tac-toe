@@ -1,5 +1,8 @@
-const game = document.getElementsByClassName("game");
+const body = document.getElementsByTagName("body")[0];
+console.log(body);
+const game = document.getElementsByClassName("game")[0];
 const game_board = document.getElementById("game_board");
+
 let use_x = true;
 
 function create_grid(){
@@ -12,22 +15,40 @@ function create_grid(){
         }
         game_board.appendChild(tr);
     }
+
+    let reset_button = document.createElement("button");
+    reset_button.innerHTML = "RESTART";
+    reset_button.setAttribute("class", "reset_button");
+    reset_button.setAttribute("id", "reset_button");
+    reset_button.setAttribute("onclick", "reset_board()");
+    body.appendChild(reset_button);
+    handleCellOnClick();
+}
+
+function reset_board() {
+    game_board.innerHTML="";
+    document.getElementById("reset_button").parentNode.removeChild(document.getElementById("reset_button"));
+    create_grid();
+
 }
 
 function handleCellOnClick() {
     let r_index, c_index;
-    //GET CLICKED ROW/COLUMN PARAMETERS
     for (let r = 0; r < game_board.rows.length; r++) {
         for (let c = 0; c < game_board.rows[r].cells.length; c++) {
             // return
             game_board.rows[r].cells[c].onclick = function () {
                 r_index = this.parentElement.rowIndex;
                 c_index = this.cellIndex;
-                //console.log("R/C", [r_index, c_index]);
                 checkCell(r_index, c_index);
             }
         }
     }
+}
+
+function clear_table(){
+    game_board.innerHTML = "";
+    create_grid();
 }
 
 function markCell(r_index, c_index) {
@@ -128,11 +149,8 @@ function checkWinConditions() {
 }
 
 function main(){
-    game.innerHTML = " sasa ";
-    game_board.setAttribute("id", "game_board");
 
     create_grid();
-    handleCellOnClick();
     checkDiagonal();
 
 }
