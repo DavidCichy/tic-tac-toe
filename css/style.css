@@ -1,5 +1,6 @@
 body {
     background-color: #14bdac;
+    text-align: center;
 }
 
 header{
@@ -31,16 +32,66 @@ table#game_board tr, td {
     font-family: 'Karla', sans-serif;
     font-size: 25px;
     color: #444;
+    cursor: pointer;
 }
 
-table#game_board tr:nth-child(2n) td:nth-child(2n+1), tr:nth-child(2n+1) td:nth-child(2n){
+table#game_board tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+table#game_board tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+
+table#game_board tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table#game_board tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+
+table#game_board tr:nth-child(2n+1) td:nth-child(2n), tr:nth-child(2n) td:nth-child(2n+1) {
     background-color: #129f91;
 }
+
+
 
 table#game_board tr:nth-child(n+2) td {
     border-top: 1px dotted black;
 }
 
 table#game_board td:nth-child(n+2){
-    border-left:  1px dotted     black;
+    border-left:  1px dotted black;
+}
+
+table#game_board td:hover {
+    background-color: #0c7167;
+}
+
+table#game_board tr:nth-child(2n+1) td:nth-child(2n):hover{
+    background-color: #0c7167;
+}
+
+.reset_button {
+    margin: 20px;
+    background-color:#14bdac;
+    border-radius:3px;
+    border:1px dotted #222;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:13px;
+    padding:9px 44px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #15a4bd;
+}
+.reset_button:hover {
+    background-color: #14bdac;
+}
+.reset_button:active {
+    position:relative;
+    top:1px;
 }
