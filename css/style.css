@@ -55,13 +55,6 @@ table#game_board tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
 
-
-table#game_board tr:nth-child(2n+1) td:nth-child(2n), tr:nth-child(2n) td:nth-child(2n+1) {
-    background-color: #129f91;
-}
-
-
-
 table#game_board tr:nth-child(n+2) td {
     border-top: 1px dotted black;
 }
@@ -70,13 +63,6 @@ table#game_board td:nth-child(n+2){
     border-left:  1px dotted black;
 }
 
-table#game_board td:hover {
-    background-color: #0c7167;
-}
-
-table#game_board tr:nth-child(2n+1) td:nth-child(2n):hover{
-    background-color: #0c7167;
-}
 
 .reset_button {
     margin: 20px;
@@ -98,4 +84,21 @@ table#game_board tr:nth-child(2n+1) td:nth-child(2n):hover{
 .reset_button:active {
     position:relative;
     top:1px;
+}
+
+
+table#game_board tr:nth-child(2n+1) td:nth-child(2n), tr:nth-child(2n) td:nth-child(2n+1) {
+    background-color: #129f91;
+}
+/*^this script takes precedence over this one below. But ONLY IT'S FIRST PART, BEFORE COMMA! */
+
+table#game_board td:hover {
+    background-color: #0c7167;
+}
+
+/*...so it^ won't work without this fix: */
+
+
+table#game_board tr:nth-child(2n+1) td:nth-child(2n):hover{
+    background-color: #0c7167;
 }
